@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:5000/api/prodotti";
-const LOGIN_URL = "http://localhost:5000/api/login";
-const REGISTER_URL = "http://localhost:5000/api/register";
-const LOGOUT_URL = "http://localhost:5000/api/logout";
+const API_URL = "https://monitoraggio-prezzi.onrender.com/api/prodotti";
+const LOGIN_URL = "https://monitoraggio-prezzi.onrender.com/api/login";
+const REGISTER_URL = "https://monitoraggio-prezzi.onrender.com/api/register";
+const LOGOUT_URL = "https://monitoraggio-prezzi.onrender.com/api/logout";
 
 
 async function caricaNomiPersonalizzati() {
@@ -22,7 +22,7 @@ async function caricaNomiPersonalizzati() {
         }
 
         // ✅ Manca questa riga nel tuo codice
-        const response = await axios.get(`http://localhost:5000/api/nomi-personalizzati?categoria_id=${categoriaId}`, {
+        const response = await axios.get(`https://monitoraggio-prezzi.onrender.com/api/nomi-personalizzati?categoria_id=${categoriaId}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -155,12 +155,12 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 if (id) {
                     // Modifica
-                    await axios.put(`http://localhost:5000/api/categorie/${id}`, { nome }, {
+                    await axios.put(`https://monitoraggio-prezzi.onrender.com/api/categorie/${id}`, { nome }, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                 } else {
                     // Aggiunta
-                    await axios.post("http://localhost:5000/api/categorie", { nome }, {
+                    await axios.post("https://monitoraggio-prezzi.onrender.com/api/categorie", { nome }, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                 }
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             console.log("📡 DEBUG - Inviando dati al server...");
-            const response = await axios.post("http://localhost:5000/api/register", { nome, email, password });
+            const response = await axios.post("https://monitoraggio-prezzi.onrender.com/api/register", { nome, email, password });
 
             console.log("✅ DEBUG - Risposta ricevuta:", response.data);
             alert("🎉 Registrazione completata! Ora puoi accedere.");
@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const url = `http://localhost:5000/api/prodotti?categoria=${categoriaId}`;
+            const url = `https://monitoraggio-prezzi.onrender.com/api/prodotti?categoria=${categoriaId}`;
 
             const response = await axios.get(url, {
                 headers: { Authorization: `Bearer ${token}` }
@@ -439,7 +439,7 @@ document.addEventListener("DOMContentLoaded", function () {
         container.innerHTML = "";
 
         try {
-            const res = await axios.get("http://localhost:5000/api/categorie", {
+            const res = await axios.get("https://monitoraggio-prezzi.onrender.com/api/categorie", {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -481,7 +481,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const token = localStorage.getItem("token");
 
         try {
-            await axios.delete(`http://localhost:5000/api/categorie/${id}`, {
+            await axios.delete(`https://monitoraggio-prezzi.onrender.com/api/categorie/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const res = await axios.get("http://localhost:5000/api/categorie", {
+            const res = await axios.get("https://monitoraggio-prezzi.onrender.com/api/categorie", {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -650,7 +650,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("📡 DEBUG - Dati inviati per la modifica:", datiAggiornati);
 
         try {
-            const response = await axios.put(`http://localhost:5000/api/prodotti/${id}`, datiAggiornati, {
+            const response = await axios.put(`https://monitoraggio-prezzi.onrender.com/api/prodotti/${id}`, datiAggiornati, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -692,7 +692,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             const token = localStorage.getItem("token"); // Recupera il token
 
-            const response = await axios.delete(`http://localhost:5000/api/prodotti/${id}`, {
+            const response = await axios.delete(`https://monitoraggio-prezzi.onrender.com/api/prodotti/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -733,7 +733,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await axios.post("http://localhost:5000/api/prodotti", {
+            const response = await axios.post("https://monitoraggio-prezzi.onrender.com/api/prodotti", {
                 nome,
                 nome_personalizzato,
                 url,
@@ -815,7 +815,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("progressBar").innerText = "0%";
 
             try {
-                const response = await axios.post("http://localhost:5000/api/check-prodotto",
+                const response = await axios.post("https://monitoraggio-prezzi.onrender.com/api/check-prodotto",
                     { prodotti: prodottiSelezionati },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -876,7 +876,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ select#categoriaProdotto trovato, procedo a caricare le categorie...");
 
         try {
-            const res = await axios.get("http://localhost:5000/api/categorie", {
+            const res = await axios.get("https://monitoraggio-prezzi.onrender.com/api/categorie", {
                 headers: { Authorization: `Bearer ${token}` }
             });
 

@@ -38,7 +38,7 @@
     console.log("🚀 setting.js caricato correttamente!");
     caricaCategorieNotifiche(); 
 
-    const API_URL = "http://localhost:5000/api/selettori"; // ✅ Definiamo API_URL prima di usarlo
+    const API_URL = "https://monitoraggio-prezzi.onrender.com/api/selettori"; // ✅ Definiamo API_URL prima di usarlo
     const selettoreForm = document.getElementById("selettoreForm");
     const selectNomi = document.getElementById("nomiMonitorati");
     const contatore = document.getElementById("contatoreNomi");
@@ -286,7 +286,7 @@
                 return;
             }
 
-            const response = await axios.get(`http://localhost:5000/api/nomi-personalizzati?categoria_id=${categoriaId}`, {
+            const response = await axios.get(`https://monitoraggio-prezzi.onrender.com/api/nomi-personalizzati?categoria_id=${categoriaId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -362,7 +362,7 @@
         if (!token) return;
 
         try {
-            const res = await axios.get(`http://localhost:5000/api/notifiche/${categoriaId}`, {
+            const res = await axios.get(`https://monitoraggio-prezzi.onrender.com/api/notifiche/${categoriaId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -463,7 +463,7 @@
     //    }
 
     //    try {
-    //        const response = await axios.post("http://localhost:5000/api/notifiche", {
+    //        const response = await axios.post("https://monitoraggio-prezzi.onrender.com/api/notifiche", {
     //            orario,
     //            frequenza,
     //            nomi
@@ -536,7 +536,7 @@
 
             console.log("📤 Payload da inviare:", payload);
 
-            const response = await axios.post("http://localhost:5000/api/notifiche", payload, {
+            const response = await axios.post("https://monitoraggio-prezzi.onrender.com/api/notifiche", payload, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -560,7 +560,7 @@
         }
 
         try {
-            const response = await axios.post("http://localhost:5000/api/smtp-config", {
+            const response = await axios.post("https://monitoraggio-prezzi.onrender.com/api/smtp-config", {
                 emailMittente,
                 passwordApp
             }, {
@@ -596,7 +596,7 @@
         }
 
         try {
-            const res = await axios.get("http://localhost:5000/api/categorie", {
+            const res = await axios.get("https://monitoraggio-prezzi.onrender.com/api/categorie", {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -628,7 +628,7 @@
         try {
             const token = localStorage.getItem("token");
 
-            const res = await axios.get(`http://localhost:5000/api/nomi-personalizzati?categoria_id=${categoriaId}`, {
+            const res = await axios.get(`https://monitoraggio-prezzi.onrender.com/api/nomi-personalizzati?categoria_id=${categoriaId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -659,7 +659,7 @@
         }
 
         try {
-            const res = await axios.post("http://localhost:5000/api/notifiche/disattiva", {
+            const res = await axios.post("https://monitoraggio-prezzi.onrender.com/api/notifiche/disattiva", {
                 categoria_id: categoriaId
             }, {
                 headers: { Authorization: `Bearer ${token}` }
@@ -690,7 +690,7 @@
         if (!conferma) return;
 
         try {
-            await axios.delete(`http://localhost:5000/api/notifiche/${categoriaId}`, {
+            await axios.delete(`https://monitoraggio-prezzi.onrender.com/api/notifiche/${categoriaId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("🗑️ Notifica eliminata");
