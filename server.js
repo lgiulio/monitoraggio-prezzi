@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken'); // 🔑 Per generare i token di autenticazi
 const puppeteer = require('puppeteer'); // 🖥️ Per lo scraping dei prezzi
 const app = express();
 const PORT = process.env.PORT || 5000;
-const SECRET_KEY = "supersegreto"; // 🔥 Cambia questa chiave con una più sicura
+const SECRET_KEY = "mon_69_prezzi_cacca"; // 🔥 Cambia questa chiave con una più sicura
 const { cripta } = require("./utils/crypto");
 
 app.use(cors());
