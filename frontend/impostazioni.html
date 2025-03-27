@@ -1,0 +1,198 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">
+        <i class="bi bi-gear-wide-connected text-secondary me-2 fs-3"></i>
+        Impostazioni
+    </h1>
+
+
+
+    <!-- Gestione Selettori -->
+    <div class="card p-4 mt-3">
+        <h3>Gestione Selettori</h3>
+
+        <!-- Pulsante Nuovo Selettore -->
+        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#selettoreModal" onclick="openModal()">
+            <i class="bi bi-plus-circle-fill me-1"></i> Nuovo Selettore
+        </button>
+
+
+        <!-- Tabella Selettori -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>          <!-- Colonna ID -->
+                    <th>Tipo</th>        <!-- Tipo (nome o prezzo) -->
+                    <th>Selettore</th>   <!-- Il selettore CSS/XPath -->
+                    <th>Azioni</th>      <!-- Per modificare o eliminare -->
+                </tr>
+            </thead>
+            <tbody id="selettoriTableBody"></tbody>
+        </table>
+
+    </div>
+
+    <!-- Impostazioni Notifiche -->
+    <div class="card p-4 mt-4">
+        <h3 class="mb-3">
+            <i class="bi bi-bell-fill text-warning me-2 fs-5"></i>
+            Impostazioni Notifiche
+        </h3>
+
+        <form id="notificheForm">
+            <div class="mb-3">
+                <label for="emailNotifica" class="form-label">
+                    <i class="bi bi-envelope-fill text-primary me-2"></i>
+                    Email per le notifiche
+                </label>
+                <input type="email" id="emailNotifica" class="form-control" placeholder="esempio@email.com" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="metodoNotifica" class="form-label">
+                    <i class="bi bi-arrow-repeat text-success me-2"></i>
+                    Frequenza
+                </label>
+
+                <select id="metodoNotifica" class="form-select">
+                    <option value="giornaliera">Giornaliera</option>
+                    <option value="settimanale">Settimanale</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="orarioNotifica" class="form-label">
+                    <i class="bi bi-clock-fill text-danger me-2"></i>
+                    Orario giornaliero per il controllo
+                </label>
+
+                <input type="time" id="orarioNotifica" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="categoriaFiltroNotifiche" class="form-label">
+                    <i class="bi bi-folder-fill text-secondary me-2"></i>
+                    Filtra per Categoria
+                </label>
+                <select id="categoriaFiltroNotifiche" class="form-select">
+                    <option value="">-- Seleziona Categoria --</option>
+                    <!-- Caricato dinamicamente -->
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="nomiMonitorati" class="form-label">
+                    <i class="bi bi-tags-fill text-info me-2"></i>
+                    Nomi Personalizzati da monitorare
+                </label>
+
+                <select id="nomiMonitorati" class="form-select" multiple size="5">
+                    <!-- Popolato dinamicamente -->
+                </select>
+                <p class="form-text text-muted mt-1">
+                    <i class="bi bi-info-circle-fill text-secondary me-2"></i>
+                    Tieni premuto <strong>Ctrl</strong> (o <strong>Cmd</strong> su Mac) per selezionare più nomi.
+                </p>
+
+            </div>
+
+            <!-- Contatore e lista selezionati -->
+            <p id="contatoreNomi" class="text-muted mt-2">0 selezionati</p>
+            <button id="deselezionaTutti" class="btn btn-sm btn-secondary mt-2">Deseleziona Tutti</button>
+            <p id="listaSelezionati" class="text-muted mt-2" style="font-size: 0.9em;"></p>
+
+            <hr>
+
+            <!-- ✅ Nuovi campi per mittente -->
+            <div class="mb-3">
+                <label for="emailMittente" class="form-label">
+                    <i class="bi bi-send-fill text-primary me-2"></i>
+                    Email mittente (per invio)
+                </label>
+
+                <input type="email" id="emailMittente" class="form-control" placeholder="es. mario@gmail.com" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="passwordApp" class="form-label">
+                    <i class="bi bi-key-fill text-warning me-2"></i>
+                    Password per App
+                </label>
+
+                <div class="input-group">
+                    <input type="password" id="passwordApp" class="form-control" placeholder="password per app" required>
+                    <button type="button" class="btn btn-outline-secondary" id="togglePassword" title="Mostra/Nascondi Password">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+
+                </div>
+                <div class="form-text">💡 Usa la password per app generata da Gmail o altro servizio SMTP.</div>
+            </div>
+
+
+            <div class="mt-4 d-flex flex-wrap gap-2">
+                <!-- 💾 Salva -->
+                <button id="salvaNotifica" type="submit" class="btn btn-success">
+                    <i class="bi bi-save me-1"></i> Salva impostazioni
+                </button>
+
+                <!-- 🔕 Disattiva -->
+                <button type="button" class="btn btn-outline-warning" id="disattivaNotificaBtn">
+                    <i class="bi bi-bell-slash-fill me-1"></i> Disattiva Notifica
+                </button>
+
+                <!-- 🗑️ Elimina -->
+                <button type="button" class="btn btn-outline-danger" id="eliminaNotificaBtn">
+                    <i class="bi bi-trash3-fill me-1"></i> Elimina Notifica
+                </button>
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+
+</div>
+
+<!-- Modal per Creazione/Modifica Selettore -->
+<div class="modal fade" id="selettoreModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Gestione Selettore</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="selettoreForm">
+                    <input type="hidden" id="selettoreId">
+                    <div class="mb-3">
+                        <label for="tipoSelettore" class="form-label">Tipo:</label>
+                        <select id="tipoSelettore" class="form-control">
+                            <option value="nome">Nome</option>
+                            <option value="prezzo">Prezzo</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="selettoreInput" class="form-label">Selettore CSS/XPath:</label>
+                        <input type="text" id="selettoreInput" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salva</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById("tornaAllaDashboard").addEventListener("click", function () {
+        document.getElementById("contenutoImpostazioni").style.display = "none";
+        document.getElementById("contenutoPrincipale").style.display = "block";
+    });
+</script>
+
+
+
+
+
+

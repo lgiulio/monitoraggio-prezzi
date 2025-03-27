@@ -1,0 +1,107 @@
+﻿body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* 👇 QUI le animazioni valide per tutti */
+.bi {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    display: inline-block;
+}
+
+    .bi:hover {
+        transform: scale(1.2);
+        opacity: 0.85;
+        cursor: pointer;
+    }
+
+td i.bi {
+    display: inline-block; /* assicura che siano affiancate */
+    margin-right: 8px; /* spazio tra le icone */
+    vertical-align: middle; /* centratura verticale */
+}
+td.text-end i.bi {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+td.text-end {
+    white-space: nowrap;
+}
+
+
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+}
+
+/* Migliora lo stile della card su mobile */
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ottimizza il form per mobile */
+form .form-control {
+    font-size: 16px;
+}
+
+/* Ottimizza la tabella su dispositivi mobili */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Migliora la leggibilità della tabella su schermi piccoli */
+@media (max-width: 576px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .scrollable-table {
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+    }
+
+
+
+    .table td {
+        display: block;
+        text-align: right;
+        font-size: 14px;
+        padding: 5px;
+    }
+
+        .table td::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+
+   
+
+}
